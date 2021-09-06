@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Vente extends Model
+class Sale extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $table = 'ventes';
+    protected $table = 'sales';
 
     protected $fillable = ['nom','nombre',
-    'marque',  'model', 
+    'achat_id',
     'date','montant', 'garantie', 'contact','sitgeo', 'livreur'];
 
     // public function achats(){

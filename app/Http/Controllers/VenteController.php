@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Vente;
+use App\Models\Achat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
@@ -40,9 +41,13 @@ class VenteController extends Controller
      */
     public function create()
     {
+        // $achats = Achat::all();
+
         $vente = new Vente();
 
-        return view('ventes.create', compact('vente'));
+        return view('ventes.create', compact('vente' 
+        // ,'achats'
+    ));
     }
 
     /**
@@ -53,9 +58,18 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
+        $achat = Achat::select('nombreachat')->get();
+
+        // dd($achat);
+        // if($achat > $request->nombre){
+        //     $vente = Vente::create($this->validator());
+        // } else{
+        //     return "Impossible la BD est vide";
+        // }
+
         $vente = Vente::create($this->validator());
 
-        return Redirect::route('ventes.index')->with('message', 'Félicitation, les informations de la vente à '. $vente->nom . ' ont bien été enregistrées.');
+        return Redirect::route('ventes.index')->with('message', 'id-client '. $vente->id.'. Félicitation, les informations du produit vendu à M.'. $vente->nom . ' ont bien été enregistrées.');
         // return Redirect::route('ventes.create');
         // return Redirect::route('ventes.create')->with('message', 'Félicitation, les informations de la vente de '. $vente->nom . ' ont bien été enregistrées.');
     }
@@ -112,15 +126,16 @@ class VenteController extends Controller
         $vente->contact = $request->input('contact');
         $vente->marque = $request->input('marque');
         $vente->model = $request->input('model');
+        // $vente->achat_id = $request->input('achat_id');
         $vente->date = $request->input('date');
         $vente->montant = $request->input('montant');
-        $vente->garantie = $request->input('garantie');
+        $vente->nombre = $request->input('nombre');
 
 $vente->save();
 
         // $vente->update($this->validator());
 
-        return Redirect::route('ventes.index')->with('message', 'id-client '. $vente->id.'. Félicitation, les informations de la vente de '. $vente->nom .' ont bien été modifiées.');
+        return Redirect::route('ventes.index')->with('message', 'id-client '. $vente->id.'. Félicitation, les informations du produit vendu à M.'. $vente->nom .' ont bien été modifiées.');
     }
 
     /**
@@ -143,9 +158,11 @@ $vente->save();
             'contact' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'marque' => ['required', 'string', 'max:255'],
             'model' => ['required', 'string', 'max:255'],
-            'montant' => 'required|string',
+            'montant' => 'required|integer',
             'date' => 'required|string',
             'garantie' => 'required|integer',
+            'nombre' => 'required|integer',
+            // 'achat_id' => 'required|integer',
         ]);
     }
 }

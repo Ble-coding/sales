@@ -80,28 +80,6 @@
 											</div>
 											<div class="col-lg-6 col-md-12">
 													<div class="form-group row">
-														<label class="col-md-3 form-label">Marque</label>
-														<div class="col-md-9">
-															<input value="{{ old('marque') ?? $vente->marque }}" class="form-control @error('marque') is-invalid @enderror" placeholder="Entrez....." type="text" id="marque" name="marque">
-                                                                @error('marque')
-                                                                <div class="invalid-feedback">
-                                                                {{ $errors->first('marque') }}
-                                                                </div>
-                                                            @enderror
-														</div>
-													</div>
-                                                    	<div class="form-group row">
-														<label class="col-md-3 form-label">Model</label>
-														<div class="col-md-9">
-															<input value="{{ old('model') ?? $vente->model }}" class="form-control @error('model') is-invalid @enderror" placeholder="Entrez....." type="text" id="model" name="model">
-                                                               @error('model')
-                                                                <div class="invalid-feedback">
-                                                                {{ $errors->first('model') }}
-                                                                </div>
-                                                                 @enderror
-														</div>
-													</div>
-													{{-- <div class="form-group row">
 														<label class="col-md-3 form-label">Téléphone</label>
 														<div class="col-md-9">
 															<select name="achat_id" id="achat_id" class="form-control custom-select select2">
@@ -114,8 +92,8 @@
 															{{ $errors->first('achat_id') }}
 															</div>
 														@enderror
-													</div> --}}
-													{{-- </div> --}}
+													</div>
+													</div>
 													<div class="form-group row">
 														<label class="col-md-3 form-label">Nombre</label>
 														<div class="col-md-9">

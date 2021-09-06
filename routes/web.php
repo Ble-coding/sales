@@ -21,4 +21,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Auth::routes();
 Route::resource('ventes', 'App\Http\Controllers\VenteController');
+Route::resource('sales', 'App\Http\Controllers\SaleController');
+Route::resource('achats', 'App\Http\Controllers\AchatController');
 // Route::post('ventes', [App\Http\Controllers\VenteController::class, 'datesearch' ])->name('ventes.search');

@@ -60,7 +60,7 @@
 													<th>Date</th>
 													<th>Livreur</th>
 													<th>Montant</th>
-													{{-- <th>Statut</th> --}}
+													<th>Statut</th>
 													<th>Action</th>
 													</tr>
 												</thead>
@@ -72,23 +72,23 @@
 													<td>{{$vente->nom}}</td>
 													<td>{{$vente->sitgeo}}</td>
 													<td>{{$vente->contact}}</td>
-													<td>{{$vente->marque}} - {{$vente->model}}</td>
-													{{-- <td>{{$vente->achat->marqueachat}} - {{$vente->achat->modelachat}}</td> --}}
+													{{-- <td>{{$vente->marque}} - {{$vente->model}}</td> --}}
+													<td>{{$vente->achat->marqueachat}} - {{$vente->achat->modelachat}}</td>
 													<td>{{$vente->nombre}}</td>
 													{{-- <td>{{$vente->total = $vente->achat->nombreachat - $vente->nombre}}</td> --}}
 													<td>{{ \Carbon\Carbon::parse($vente->date)->format('d/m/Y')}}</td>
 													<td>{{$vente->livreur}}</td>
 													<td>{{ number_format($vente->montant, 0, ',', ' ') }}</td>
 													
-													{{-- @if ($vente->achat->nombreachat - $vente->nombre)
+													@if ($vente->achat->nombreachat - $vente->nombre)
 													<td><i class="fa fa-check text-success"></i> In Stock</td>
 													
 													@elseif($vente->achat->nombreachat = $vente->nombre)
 													<td><i class="fa fa-exclamation-triangle text-danger"></i> En rupture</td>
-													@endif --}}
+													@endif
 													<td>
               											{{-- <a href="{{ route('ventes.show', ['vente' => $vente->id])}}" class="btn btn-light">👁️</a> --}}
-														  <a href="{{ route('ventes.edit' , ['vente' => $vente->id]) }}" class="btn btn-light">✏️</a>
+														  <a href="{{ route('sales.edit' , ['vente' => $vente->id]) }}" class="btn btn-light">✏️</a>
             										</td>
 
 												</tr>
