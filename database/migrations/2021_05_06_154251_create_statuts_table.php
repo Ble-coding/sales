@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAchatsTable extends Migration
+class CreateStatutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAchatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('achats', function (Blueprint $table) {
+        Schema::create('statuts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateAchatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('achats');
+        Schema::dropIfExists('statuts');
     }
 }

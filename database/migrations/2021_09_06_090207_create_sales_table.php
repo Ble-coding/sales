@@ -23,6 +23,7 @@ class CreateSalesTable extends Migration
             $table->string('livreur');
             $table->string('sitgeo');
             $table->string('nombre');
+            $table->string('status');
             $table->timestamps();
         });
     }

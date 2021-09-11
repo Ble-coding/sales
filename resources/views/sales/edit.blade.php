@@ -28,13 +28,13 @@
 							<div class="col-lg-12 col-xl-12 col-md-12 col-sm-12">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">Modification des informations du client {{ $vente->nom}}</h4>
+										<h4 class="card-title">Modification des informations du client {{ $sale->nom}}</h4>
 									</div>
 									<div class="card-body">
 										<div class="row">
 											<div class="col-lg-6 col-md-12">
                                                  {{-- @if(!session()->has('message')) --}}
-												<form class="form-horizontal" action="{{ route('sales.update', ['vente' => $vente->id]) }}" method="POST" enctype="multipart/form-data">
+												<form class="form-horizontal" action="{{ route('sales.update', ['sale' => $sale->id]) }}" method="POST" enctype="multipart/form-data">
                                                    @method('PATCH')                                    
 												@include('includes.formsale')
                                                 <div class="text-wrap">

@@ -42,7 +42,9 @@ class AchatController extends Controller
      */
     public function store(Request $request)
     {
+
            $achat = Achat::create($this->validator());
+   
 
           return Redirect::route('achats.index')->with('message', 'id-fournisseur '. $achat->id.'. Félicitation, les informations du produit achété à '. $achat->fournisseur . ' ont bien été enregistrées.');
     }
@@ -90,6 +92,7 @@ class AchatController extends Controller
         $achat->dateachat = $request->input('dateachat');
         $achat->montantachat = $request->input('montantachat');
         $achat->nombreachat = $request->input('nombreachat');
+        $achat->status = $request->input('status');
 
 $achat->save();
 
@@ -120,6 +123,7 @@ $achat->save();
             'modelachat' => ['required', 'string', 'max:255'],
             'montantachat' => 'required|integer',
             'dateachat' => 'required|string',
+            'status' => 'required|integer',
             'garantieachat' => 'required|integer',
             'nombreachat' => 'required|integer',
         ]);

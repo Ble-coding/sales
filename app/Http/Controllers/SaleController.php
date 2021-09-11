@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sale;
+use App\Models\Vente;
 use App\Models\Achat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -18,9 +19,9 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $ventes= Sale::latest()->paginate(10);
+        $sales= Sale::latest()->paginate(10);
 
-        return view('sales.index' , compact('ventes'));
+        return view('sales.index' , compact('sales'));
 
     }
 
@@ -33,9 +34,9 @@ class SaleController extends Controller
     {
         $achats = Achat::all();
 
-        $vente = new sale();
+        $sale = new sale();
 
-        return view('sales.create', compact('vente', 'achats'));
+        return view('sales.create', compact('sale', 'achats'));
     }
 
     /**
@@ -44,19 +45,50 @@ class SaleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Sale $sale)
     {
         $achat = Achat::select('nombreachat')->get();
+        // $achat = Achat::select('nombreachat')->where('id', $sale)->get();
 
-        // dd($achat);
+       
         if($achat >= $request->nombre){
-            $vente = Sale::create($this->validator());
+            $sale = Sale::create($this->validator());
+
+            // if ($achat[0]->nombreachat  - $request->input('nombre')){
+            //         $stock = 'en stock';
+            // }elseif($achat->nombreachat = $request->input('nombre')){
+            //     $rupture = 'en rupture';
+            // }
+										
         } else{
             return "Impossible la BD est vide";
         }
 
+        dd($achat);
 
-        return Redirect::route('sales.index')->with('message', 'id-client '. $vente->id.'. Félicitation, les informations du produit vendu à M.'. $vente->nom . ' ont bien été enregistrées.');
+
+        // $v = Achat::select('nombreachat')->where('id', $sale)->get();
+        // $vc = $v->count();
+ 
+ 
+        // if($vc == 0 && $achat >= $request->nombre){
+        //     // $sale = Sale::create($this->validator());
+        // }
+        // else{
+        //  //    dd($v[0]->initial);
+ 
+     
+        //  $ver = [];
+        //  foreach ((array) $v as $item) {
+ 
+        //    $ver =  $v[0]->nombreachat - $request->input('nombre');
+        //      }
+        //     }
+
+        //     dd($v);
+ 
+    
+        return Redirect::route('sales.index')->with('message', 'id-client '. $sale->id.'. Félicitation, les informations du produit vendu à M.'. $sale->nom . ' ont bien été enregistrées.');
     }
 
     /**
@@ -73,39 +105,40 @@ class SaleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $vente
+     * @param  int  $sale
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sale $vente)
+    public function edit(Sale $sale)
     {
-        return view('sales/edit',compact('vente'));
+        $achats = Achat::all();
+        return view('sales/edit',compact('sale','achats'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $vente
+     * @param  int  $sale
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $vente)
+    public function update(Request $request, $sale)
     {
-        $vente = Sale::find($vente);
+        $sale = Sale::find($sale);
 
-        $vente->nom = $request->input('nom');
-        $vente->livreur = $request->input('livreur');
-        $vente->sitgeo = $request->input('sitgeo');
-        $vente->contact = $request->input('contact');
-        $vente->achat_id = $request->input('achat_id');
-        $vente->date = $request->input('date');
-        $vente->montant = $request->input('montant');
-        $vente->nombre = $request->input('nombre');
+        $sale->nom = $request->input('nom');
+        $sale->livreur = $request->input('livreur');
+        $sale->sitgeo = $request->input('sitgeo');
+        $sale->contact = $request->input('contact');
+        $sale->achat_id = $request->input('achat_id');
+        $sale->date = $request->input('date');
+        $sale->montant = $request->input('montant');
+        $sale->nombre = $request->input('nombre');
 
-$vente->save();
+$sale->save();
 
         // $sale->update($this->validator());
 
-        return Redirect::route('sales.index')->with('message', 'id-client '. $vente->id.'. Félicitation, les informations du produit vendu à M.'. $vente->nom .' ont bien été modifiées.');
+        return Redirect::route('sales.index')->with('message', 'id-client '. $sale->id.'. Félicitation, les informations du produit vendu à M.'. $sale->nom .' ont bien été modifiées.');
     }
 
     /**

@@ -51,17 +51,17 @@
 											<table class="table table-bordered text-nowrap" id="example1">
 												<thead>
 													<tr>
-															<th>Id</th>
-													<th>Client</th>
-													<th>Position</th>
-													<th>Contact</th>
-													<th>Téléphone</th>
-													<th>Nombre</th>
-													<th>Date</th>
-													<th>Livreur</th>
-													<th>Montant</th>
-													{{-- <th>Statut</th> --}}
-													<th>Action</th>
+														<th>Id</th>
+														<th>Client</th>
+														<th>Position</th>
+														<th>Contact</th>
+														<th>Téléphone</th>
+														<th>Nombre</th>
+														<th>Date</th>
+														<th>Livreur</th>
+														<th>Montant</th>
+														{{-- <th>Statut</th> --}}
+														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -95,7 +95,7 @@
 												    @endforeach
 												@else
 																	<tr>
-																			<td colspan="10" class="text-center"><i style="color: white"><strong>Il n'y a pas de ventes enregistrées pour l'instant</strong></i></td>
+																			<td colspan="10" class="text-center"><i style="color: white"><strong>Aucun enregistrements correspondants trouvés</strong></i></td>
 																		</tr>
 												@endif
 											</tbody>

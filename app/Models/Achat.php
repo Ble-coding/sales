@@ -12,7 +12,9 @@ class Achat extends Model
 
     protected $table = 'achats';
 
-    protected $fillable = ['fournisseur','nombreachat','marqueachat',  'modelachat','dateachat','montantachat', 'garantieachat', 'contactachat','sitgeoachat', 'depot'];
+    protected $fillable = [
+        'status',
+        'fournisseur','nombreachat','marqueachat',  'modelachat','dateachat','montantachat', 'garantieachat', 'contactachat','sitgeoachat', 'depot'];
 
     // public function vente(){
     //     return $this->belongsTo('App\Models\Vente');

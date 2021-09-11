@@ -74,7 +74,7 @@
 									<div class="card-body">
 										<p class=" mb-1 ">Ventes Jour</p>
 										<h2 class="mb-1 number-font">{{ number_format($sumDay, 0, ',', ' ') }}</h2>
-										<small class="fs-12 text-muted">Ventes du jour pour <span class="text-success"> {{$count}} </span> produit(s)  </small>
+										<small class="fs-12 text-muted">Ventes du jour pour <span class="text-success"> {{$count}}</span> produit @if($count > 1)s @endif  </small>
 										{{-- <small class="fs-12 text-muted">Ventes du jour pour  produits  </small> --}}
 										<span class="ratio bg-success">FCFA</span>
 										{{-- <span class="ratio-text text-muted">Goals Reached</span> --}}
@@ -115,88 +115,38 @@
 									<div class="card-body">
 										<div class="table-responsive">
 											<table class="table table-vcenter text-nowrap mb-0 table-striped table-bordered border-top">
-												<thead class="">
-													{{-- <tr>
+									<thead>
+													<tr>
 														<th>Id</th>
-														<th>Client</th>
-														<th>Position</th>
-														<th>Contact</th>
-														<th>Téléphone</th>
 														<th>Date</th>
-														<th>Livreur</th>
-														<th>Montant</th>
+														<th>Client</th>
+														<th>Produits</th>
+														{{-- <th>Stock</th> --}}
+														<th>Quantités</th>
+														<th>PU</th>
+														{{-- <th>Action</th> --}}
 													</tr>
 												</thead>
 												<tbody>
-													@if(!empty($ventes) && $ventes->count())
-											   @foreach($ventes as $vente)
+														@if(!empty($purchases) && $purchases->count())
+											  				   @foreach($purchases as $purchase)
 												<tr>
-												<th scope="row">{{$vente->id}}</th>
-													<td>{{$vente->nom}}</td>
-													<td>{{$vente->sitgeo}}</td>
-													<td>{{$vente->contact}}</td>
-													<td>{{$vente->marque}} - {{$vente->model}}</td>
-													<td>{{ \Carbon\Carbon::parse($vente->date)->format('d/m/Y')}}</td>
-													<td>{{$vente->livreur}}</td>
-													<td>{{ number_format($vente->montant, 0, ',', ' ') }}</td>
+												<th scope="row">{{$purchase->id}}</th>
+												<td>{{ \Carbon\Carbon::parse($purchase->date)->format('d/m/Y')}}</td>
+													<td>{{$purchase->client->nomcli}}</td>
+													<td>{{$purchase->appro->produit->marque}} - {{$purchase->appro->produit->model}}</td>
+													{{-- <td>{{$purchase->stock->libelle}}</td> --}}
+													<td>{{$purchase->purchase_quantity}}</td>
+													<td>{{ number_format($purchase->montant, 0, ',', ' ') }}</td>
+												
+
 												</tr>
 												    @endforeach
 												@else
 																	<tr>
-																			<td colspan="10" class="text-center"><i style="color: white"><strong>Il n'y a pas de ventes enregistrées pour l'instant</strong></i></td>
+																			<td colspan="10" class="text-center"><i style="color: white"><strong>Aucun enregistrements correspondants trouvés</strong></i></td>
 																		</tr>
-												@endif --}}
-
-
-
-												<tr>
-													<th>Id</th>
-											<th>Client</th>
-											<th>Position</th>
-											<th>Contact</th>
-											<th>Téléphone</th>
-											<th>Nombre</th>
-											<th>Date</th>
-											<th>Livreur</th>
-											<th>Montant</th>
-											<th>Statut</th>
-											<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-												@if(!empty($ventes) && $ventes->count())
-									   @foreach($ventes as $vente)
-										<tr>
-										<th scope="row">{{$vente->id}}</th>
-											<td>{{$vente->nom}}</td>
-											<td>{{$vente->sitgeo}}</td>
-											<td>{{$vente->contact}}</td>
-											{{-- <td>{{$vente->marque}} - {{$vente->model}}</td> --}}
-											<td>{{$vente->achat->marqueachat}} - {{$vente->achat->modelachat}}</td>
-											<td>{{$vente->nombre}}</td>
-											{{-- <td>{{$vente->total = $vente->achat->nombreachat - $vente->nombre}}</td> --}}
-											<td>{{ \Carbon\Carbon::parse($vente->date)->format('d/m/Y')}}</td>
-											<td>{{$vente->livreur}}</td>
-											<td>{{ number_format($vente->montant, 0, ',', ' ') }}</td>
-											
-											@if ($vente->achat->nombreachat - $vente->nombre)
-											<td><i class="fa fa-check text-success"></i> In Stock</td>
-											
-											@elseif($vente->achat->nombreachat = $vente->nombre)
-											<td><i class="fa fa-exclamation-triangle text-danger"></i> En rupture</td>
-											@endif
-											<td>
-												  {{-- <a href="{{ route('ventes.show', ['vente' => $vente->id])}}" class="btn btn-light">👁️</a> --}}
-												  <a href="{{ route('sales.edit' , ['vente' => $vente->id]) }}" class="btn btn-light">✏️</a>
-											</td>
-
-										</tr>
-											@endforeach
-										@else
-															<tr>
-																	<td colspan="10" class="text-center"><i style="color: white"><strong>Il n'y a pas de ventes enregistrées pour l'instant</strong></i></td>
-																</tr>
-										@endif
+												@endif
 										
 												</tbody>
 											</table>

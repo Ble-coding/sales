@@ -20,7 +20,7 @@
 							<div class="page-leftheader">
 								<h4 class="page-title mb-0">Caisse</h4>
 								<ol class="breadcrumb">
-									<li class="breadcrumb-item"><a href="#"><i class="fe fe-list mr-2 fs-14"></i>Ventes</a></li>
+									<li class="breadcrumb-item"><a href="#"><i class="fe fe-list mr-2 fs-14"></i>sales</a></li>
 									<li class="breadcrumb-item active" aria-current="page"><a href="#">Liste</a></li>
 								</ol>
 							</div>
@@ -52,56 +52,56 @@
 												<thead>
 													<tr>
 															<th>Id</th>
-													<th>Client</th>
-													<th>Position</th>
-													<th>Contact</th>
-													<th>Téléphone</th>
-													<th>Nombre</th>
-													<th>Date</th>
-													<th>Livreur</th>
-													<th>Montant</th>
-													<th>Statut</th>
-													<th>Action</th>
+															<th>Client</th>
+															<th>Position</th>
+															<th>Contact</th>
+															<th>Téléphone</th>
+															<th>Nombre</th>
+															<th>Date</th>
+															<th>Livreur</th>
+															<th>Montant</th>
+															<th>Statut</th>
+													{{-- <th>Action</th> --}}
 													</tr>
 												</thead>
 												<tbody>
-														@if(!empty($ventes) && $ventes->count())
-											   @foreach($ventes as $vente)
+														@if(!empty($sales) && $sales->count())
+											   @foreach($sales as $sale)
 												<tr>
-												<th scope="row">{{$vente->id}}</th>
-													<td>{{$vente->nom}}</td>
-													<td>{{$vente->sitgeo}}</td>
-													<td>{{$vente->contact}}</td>
-													{{-- <td>{{$vente->marque}} - {{$vente->model}}</td> --}}
-													<td>{{$vente->achat->marqueachat}} - {{$vente->achat->modelachat}}</td>
-													<td>{{$vente->nombre}}</td>
-													{{-- <td>{{$vente->total = $vente->achat->nombreachat - $vente->nombre}}</td> --}}
-													<td>{{ \Carbon\Carbon::parse($vente->date)->format('d/m/Y')}}</td>
-													<td>{{$vente->livreur}}</td>
-													<td>{{ number_format($vente->montant, 0, ',', ' ') }}</td>
+												<th scope="row">{{$sale->id}}</th>
+													<td>{{$sale->nom}}</td>
+													<td>{{$sale->sitgeo}}</td>
+													<td>{{$sale->contact}}</td>
+													{{-- <td>{{$sale->marque}} - {{$sale->model}}</td> --}}
+													<td>{{$sale->achat->marqueachat}} - {{$sale->achat->modelachat}}</td>
+													<td>{{$sale->nombre}}</td>
+													{{-- <td>{{$sale->total = $sale->achat->nombreachat - $sale->nombre}}</td> --}}
+													<td>{{ \Carbon\Carbon::parse($sale->date)->format('d/m/Y')}}</td>
+													<td>{{$sale->livreur}}</td>
+													<td>{{ number_format($sale->montant, 0, ',', ' ') }}</td>
 													
-													@if ($vente->achat->nombreachat - $vente->nombre)
-													<td><i class="fa fa-check text-success"></i> In Stock</td>
+													@if ($sale->achat->nombreachat - $sale->nombre)
+													<td><i class="fa fa-check text-success"></i> En Stock</td>
 													
-													@elseif($vente->achat->nombreachat = $vente->nombre)
+													@elseif($sale->achat->nombreachat = $sale->nombre)
 													<td><i class="fa fa-exclamation-triangle text-danger"></i> En rupture</td>
 													@endif
-													<td>
-              											{{-- <a href="{{ route('ventes.show', ['vente' => $vente->id])}}" class="btn btn-light">👁️</a> --}}
-														  <a href="{{ route('sales.edit' , ['vente' => $vente->id]) }}" class="btn btn-light">✏️</a>
-            										</td>
+													{{-- <td> --}}
+              											{{-- <a href="{{ route('sales.show', ['sale' => $sale->id])}}" class="btn btn-light">👁️</a> --}}
+														  {{-- <a href="{{ route('sales.edit' , ['sale' => $sale->id]) }}" class="btn btn-light">✏️</a> --}}
+            										{{-- </td> --}}
 
 												</tr>
 												    @endforeach
 												@else
 																	<tr>
-																			<td colspan="10" class="text-center"><i style="color: white"><strong>Il n'y a pas de ventes enregistrées pour l'instant</strong></i></td>
+																			<td colspan="10" class="text-center"><i style="color: white"><strong>Aucun enregistrements correspondants trouvés</strong></i></td>
 																		</tr>
 												@endif
 											</tbody>
 										</table>
 										<div class="row d-flex justify-content-center">
-               								 {{ $ventes->links() }}
+               								 {{ $sales->links() }}
            								 </div>
 												</tbody>
 											</table>

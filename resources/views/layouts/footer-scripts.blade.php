@@ -31,4 +31,13 @@
 		<!-- Simplebar JS -->
 		<script src="{{URL::asset('assets/plugins/simplebar/js/simplebar.min.js')}}"></script>
 		<!-- Custom js-->
-		<script src="{{URL::asset('assets/js/custom.js')}}"></script>		
+		<script src="{{URL::asset('assets/js/custom.js')}}"></script>	
+
+	
+		<!-- INTERNAL Clipboard js -->
+		<script src="{{URL::asset('assets/plugins/clipboard/clipboard.min.js')}}"></script>
+		<script src="{{URL::asset('assets/plugins/clipboard/clipboard.js')}}"></script>
+
+		<!-- INTERNAL Prism js -->
+		<script src="{{URL::asset('assets/plugins/prism/prism.js')}}"></script>
+

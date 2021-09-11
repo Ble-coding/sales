@@ -3,7 +3,7 @@
     <div class="form-group row">
 														<label class="col-md-3 form-label">Nom client</label>
 														<div class="col-md-9">
-															<input type="text" name="nom" id="nom" value="{{ old('name') ?? $vente->nom }}" class="form-control @error('nom') is-invalid @enderror"  placeholder="Entrez.....">
+															<input type="text" name="nom" id="nom" value="{{ old('nom') ?? $sale->nom }}" class="form-control @error('nom') is-invalid @enderror"  placeholder="Entrez.....">
                                                               @error('nom')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('nom') }}
@@ -27,7 +27,7 @@
 														<div class="form-group row">
 														<label class="col-md-3 form-label">Tel</label>
 														<div class="col-md-9">
-															<input value="{{ old('contact') ?? $vente->contact }}" class="form-control @error('contact') is-invalid @enderror" type="tel" placeholder="Entrez....." id="contact" name="contact">
+															<input value="{{ old('contact') ?? $sale->contact }}" class="form-control @error('contact') is-invalid @enderror" type="tel" placeholder="Entrez....." id="contact" name="contact">
                                                                @error('contact')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('contact') }}
@@ -38,7 +38,7 @@
 													<div class="form-group row">
 														<label class="col-md-3 form-label">Situation géographique</label>
 														<div class="col-md-9">
-															<textarea class="form-control @error('sitgeo') is-invalid @enderror" id="sitgeo" name="sitgeo" placeholder="Entrez....." rows="3">{{ old('sitgeo') ?? $vente->sitgeo }}</textarea>
+															<textarea class="form-control @error('sitgeo') is-invalid @enderror" id="sitgeo" name="sitgeo" placeholder="Entrez....." rows="3">{{ old('sitgeo') ?? $sale->sitgeo }}</textarea>
                                                                @error('sitgeo')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('sitgeo') }}
@@ -49,7 +49,7 @@
                                                     <div class="form-group row">
 														<label class="col-md-3 form-label">Nom du livreur</label>
 														<div class="col-md-9">
-															<input value="{{ old('livreur') ?? $vente->livreur }}" class="form-control @error('livreur') is-invalid @enderror" type="text" placeholder="Entrez....." id="livreur" name="livreur">
+															<input value="{{ old('livreur') ?? $sale->livreur }}" class="form-control @error('livreur') is-invalid @enderror" type="text" placeholder="Entrez....." id="livreur" name="livreur">
                                                                @error('livreur')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('livreur') }}
@@ -88,16 +88,32 @@
 															   @endforeach
 															</select>
 															@error('achat_id')
-															<div class="invalid-feedback">
-															{{ $errors->first('achat_id') }}
-															</div>
-														@enderror
+																<div class="invalid-feedback">
+																	{{ $errors->first('achat_id') }}
+																</div>
+															@enderror
 													</div>
+												</div>
+												{{-- <div style="display:none;" class="form-group row">
+														<label class="col-md-3 form-label">Status</label>
+														<div class="col-md-9">
+															<select name="status" id="status" class="form-control custom-select select2">
+																@foreach($achats as $achat)
+																<option value="0">En rupture</option>
+																<option value="1">En stock</option>
+																@endforeach
+															</select>
+															@error('status')
+																<div class="invalid-feedback">
+																	{{ $errors->first('status') }}
+																</div>
+															@enderror
 													</div>
+												</div> --}}
 													<div class="form-group row">
 														<label class="col-md-3 form-label">Nombre</label>
 														<div class="col-md-9">
-															<input value="{{ old('nombre') ?? $vente->nombre }}" class="form-control @error('nombre') is-invalid @enderror" type="number" id="nombre" name="nombre">
+															<input value="{{ old('nombre') ?? $sale->nombre }}" class="form-control @error('nombre') is-invalid @enderror" type="number" id="nombre" name="nombre">
                                                                @error('nombre')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('nombre') }}
@@ -108,7 +124,7 @@
 													<div class="form-group row">
 														<label class="col-md-3 form-label">Date</label>
 														<div class="col-md-9">
-															<input value="{{ old('date') ?? $vente->date }}" class="form-control @error('date') is-invalid @enderror" placeholder="Entrez....." type="date" id="date" name="date">
+															<input value="{{ old('date') ?? $sale->date }}" class="form-control @error('date') is-invalid @enderror" placeholder="Entrez....." type="date" id="date" name="date">
                                                                @error('date')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('date') }}
@@ -125,7 +141,7 @@
                                                     <div class="form-group row">
 														<label class="col-md-3 form-label">Garantie</label>
 														<div class="col-md-9">
-															<input value="{{ old('garantie') ?? $vente->garantie }}" class="form-control @error('garantie') is-invalid @enderror" type="number" id="garantie" name="garantie">
+															<input value="{{ old('garantie') ?? $sale->garantie }}" class="form-control @error('garantie') is-invalid @enderror" type="number" id="garantie" name="garantie">
                                                                @error('garantie')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('garantie') }}
@@ -136,7 +152,7 @@
                                                       <div class="form-group row">
 														<label class="col-md-3 form-label">Montant</label>
 														<div class="col-md-9">
-															<input value="{{ old('montant') ?? $vente->montant}}" class="form-control @error('montant') is-invalid @enderror" type="text" placeholder="Entrez....." id="montant" name="montant">
+															<input value="{{ old('montant') ?? $sale->montant}}" class="form-control @error('montant') is-invalid @enderror" type="text" placeholder="Entrez....." id="montant" name="montant">
                                                                @error('montant')
                                                                 <div class="invalid-feedback">
                                                                 {{ $errors->first('montant') }}

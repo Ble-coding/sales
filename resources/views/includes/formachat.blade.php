@@ -101,6 +101,21 @@
                                                                  @enderror
 														</div>
 													</div>
+													<div style="display: none"  class="form-group row">
+														<label class="col-md-3 form-label">Status</label>
+														<div class="col-md-9">
+															<select name="status" id="status" class="form-control custom-select select2">
+																<option value="1">En stock</option>
+																<option value="0">En rupture</option>
+															</select>
+															{{-- <input value="{{ old('status') ?? $achat->status }}" class="form-control @error('status') is-invalid @enderror" placeholder="Entrez....." type="text" id="status" name="status"> --}}
+															@error('status')
+																<div class="invalid-feedback">
+																	{{ $errors->first('status') }}
+																</div>
+															@enderror
+													</div>
+												</div>
 													<div class="form-group row">
 														<label class="col-md-3 form-label">Nombre</label>
 														<div class="col-md-9">

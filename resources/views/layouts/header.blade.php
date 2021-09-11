@@ -36,6 +36,32 @@
 													<span class="badge badge-success side-badge">3</span>
 									</a>
 								</div> --}}
+								        	<!-- SMALL MODAL -->
+				{{-- <div class="modal" id="modaldemo3">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content modal-content-demo">
+					<div class="modal-header">
+						<h6 class="modal-title">Creer un nouveau client</h6><button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+					</div>
+						<form class="form-horizontal" action="{{ route('clients.store') }}" method="POST" enctype="multipart/form-data"> 
+					<div class="modal-body">
+						@include('includes.formclient')
+<div class="modal-footer">
+							<button class="btn btn-indigo" type="submit">Enregistrer</button> <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+						</div>
+					</div>
+						
+					</form>
+				</div>
+			</div>
+		</div> --}}
+
+		<!-- End Page -->	
+		{{-- @if(Route::is('purchases.create') )
+								<div class="mr-2 mt-2">
+										<a class="btn btn-success" data-target="#modaldemo3" data-toggle="modal" href="">Nouveau client</a>
+								</div>
+								@endif --}}
 								<div class="dropdown   header-fullscreen" >
 									<a  class="nav-link icon full-screen-link p-0"  id="fullscreen-button">
 										<svg xmlns="http://www.w3.org/2000/svg" class="header-icon" width="24" height="24" viewBox="0 0 24 24"><path d="M10 4L8 4 8 8 4 8 4 10 10 10zM8 20L10 20 10 14 4 14 4 16 8 16zM20 14L14 14 14 20 16 20 16 16 20 16zM20 8L16 8 16 4 14 4 14 10 20 10z"/></svg>
@@ -48,20 +74,11 @@
 										</span>
 									</a>
 									<div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow animated">
-									 @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+									 {{-- @guest --}}
+                            @if (Route::has('home'))
+	 @auth
 
-                            {{-- @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-									      @endif --}}
-                        @else
-										<div class="text-center">
+											<div class="text-center">
 											<a href="#" class="dropdown-item text-center user pb-0 font-weight-bold">{{ Auth::user()->name }}</a>
 											<span class="text-center user-semi-title">{{ Auth::user()->email }}</span>
 											<div class="dropdown-divider"></div>
@@ -90,7 +107,28 @@
                                    		 </form>
 										</a>
 									</div>
-									  @endguest
+
+                               
+                    
+                            {{-- @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+									      @endif --}}
+                        @elseif(Route::has('login'))
+
+							      {{-- <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a> --}}
+<li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li> 
+						
+									 @endauth
+
+
+            @endif
+
+
+			
 								</div>
 							</div>
 						</div>
