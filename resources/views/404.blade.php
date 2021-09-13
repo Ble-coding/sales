@@ -11,7 +11,7 @@
 								<div class="text-white">
 									<div class="display-1 mb-5 font-weight-bold error-text">400</div>
 									<h1 class="h3  mb-3 font-weight-bold">Stock!</h1>
-									<p class="h5 font-weight-normal mb-7 leading-normal">Stock du produit {{ $produts}} épuisé.</p>
+									<p class="h5 font-weight-normal mb-7 leading-normal">Stock du produit {{ $purchases->appro->produit->marque}}  {{ $purchases->appro->produit->model}} épuisé.</p>
 									<a class="btn btn-secondary" href="{{route('purchases.create')}}"><i class="fe fe-arrow-left-circle mr-1"></i>Retour</a>
 								</div>
 							</div>

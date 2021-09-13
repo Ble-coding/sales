@@ -80,17 +80,17 @@ class PurchaseController extends Controller
         // $purchases->produit_id = $apport->produit_id;
         // $purchases->appro_id = $apport->id;
         $purchases->purchase_quantity = $request->input('purchase_quantity');
-        $apport->decrement('appro_quantity', $purchases->purchase_quantity);
+        // $apport->decrement('appro_quantity', $purchases->purchase_quantity);
 
         // $cli->client_id = $fournisseur->id;
         // $purchases->client_id = $client->id;
         // $client->purchases()->save($purchases);
-        // if($request->input('purchase_quantity') <= $apport->appro_quantity){
-        //     $apport->decrement('appro_quantity', $purchases->purchase_quantity);
+        if($request->input('purchase_quantity') <= $apport->appro_quantity){
+            $apport->decrement('appro_quantity', $purchases->purchase_quantity);
 
-        // }else{
-        //     return view('404' , compact('produts'));
-        // }
+        }else{
+            return view('404' , compact('produts','purchases'));
+        }
 
         // $stock = Stock::findOrFail($materials);
         // $tasks->materials = $stock->product_name;
@@ -124,13 +124,15 @@ class PurchaseController extends Controller
      */
     public function edit(Purchase $purchase)
     {
-        // $stocks = Stock::all();
-         $appros = Appro::all();
-        $clients = Client::all();
-        $produits = Produit::all();
+       
 
-        return view('purchases/edit', compact('clients','produits','appros','purchase'
-        // ,'stocks'
+        // $stocks = Stock::all();
+        //  $appros = Appro::all();
+        // $clients = Client::all();
+        // $produits = Produit::all();
+
+        return view('purchases/edit', compact('purchase'
+        // ,'stocks''clients','produits','
     ));
     }
 
@@ -147,7 +149,7 @@ class PurchaseController extends Controller
 
         $purchase->datepurchase = $request->input('datepurchase');
         // $purchase = $request->input('produit_id');
-        $purchase = $request->input('appro_id');
+        $purchase->appro_id  = $request->input('appro_id');
         $purchase->client_id = $request->input('client_id');
         // $purchase->purchase_quantity = $request->input('purchase_quantity');
         // $purchase->montant = $request->input('montant');

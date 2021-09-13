@@ -90,13 +90,13 @@ class ApproController extends Controller
     public function edit(Appro $appro)
     {
         // $stocks = Stock::all();
-        $fournisseurs = Fournisseur::all();
-        $produits = Produit::all();
+        // $fournisseurs = Fournisseur::all();
+        // $produits = Produit::all();
         // $appro = new Appro();
 
 
-        return view('appros/edit',compact('fournisseurs','produits','appro'
-        // 'stocks'
+        return view('appros/edit',compact('appro'
+        // 'stocks''fournisseurs','produits',
     ));
     }
 
